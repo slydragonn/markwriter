@@ -1,5 +1,5 @@
 const EditorPage = () => {
-  return <h1>Editor Page</h1>;
-};
+  return <h1>Editor Page</h1>
+}
 
-export default EditorPage;
+export default EditorPage
