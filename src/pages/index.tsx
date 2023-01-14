@@ -133,14 +133,14 @@ export default function Home() {
         justifyContent={{ base: 'space-around', md: 'space-between' }}
         w="100%"
         minH="100vh"
-        p='0 20px'
+        p="0 20px"
         bg={`linear-gradient(180deg, ${COLORS.black} 20%, ${COLORS.blue} 60%, ${COLORS.purple} 100%)`}
       >
         <Flex
           flexDir="column"
           alignItems="center"
           justifyContent="space-between"
-          gap='80px'
+          gap="80px"
           textAlign="center"
         >
           <Text color={COLORS.white} mt="10px" fontWeight="thin" opacity={0.7}>
@@ -150,7 +150,7 @@ export default function Home() {
             <Heading as="h1" size="3xl" color={COLORS.white}>
               Simple Markdown Editor
             </Heading>
-            <Text color={COLORS.white} fontWeight="thin" mt='10px'>
+            <Text color={COLORS.white} fontWeight="thin" mt="10px">
               MarkWriter is a Simple and Minimalist Markdown Editor
             </Text>
           </div>
@@ -210,16 +210,18 @@ export default function Home() {
           textAlign="center"
           maxW="700px"
           color={COLORS.white}
-          fontSize='lg'
+          fontSize="lg"
         >
-          Easily write everything you want in Markdown thanks to MarkWriter. All the features that make Markdown such a beloved format are available here.
+          Easily write everything you want in Markdown thanks to MarkWriter. All
+          the features that make Markdown such a beloved format are available
+          here.
         </Text>
       </Box>
       <Box
         display="flex"
         flexWrap="wrap"
         justifyContent="center"
-        alignItems='start'
+        alignItems="start"
         gap="60px"
         w="100%"
         p="80px 20px"
@@ -253,7 +255,7 @@ export default function Home() {
         textAlign="center"
       >
         <Heading as="h2">How to write in Markdown</Heading>
-        <Text maxW="700px" fontSize='lg'>
+        <Text maxW="700px" fontSize="lg">
           Markdown is a lightweight markup language that you can use to add
           formatting elements to plaintext text documents.
         </Text>
@@ -280,19 +282,24 @@ export default function Home() {
         <Flex flexDir="column" alignItems="center" gap="20px" mt="80px">
           <Text>Take notes right now with MarkWriter</Text>
           <Link href="/editor">
-            <Button
-              rightIcon={<RightIcon />}
-              size="lg"
-              colorScheme="gray"
-            >
+            <Button rightIcon={<RightIcon />} size="lg" colorScheme="gray">
               Editor
             </Button>
           </Link>
         </Flex>
-        <Flex flexDir='column' alignItems='center' gap='40px' w='100%' mt='40px' id='markdown-cheat-sheet'>
-          <Heading as='h3' fontSize='2xl'>Markdown Cheat Sheet</Heading>
-          <TableContainer border='1px solid gray' borderRadius='10px' p='20px'>
-            <Table variant='striped' colorScheme='gray' size='lg' fontSize='lg'>
+        <Flex
+          flexDir="column"
+          alignItems="center"
+          gap="40px"
+          w="100%"
+          mt="40px"
+          id="markdown-cheat-sheet"
+        >
+          <Heading as="h3" fontSize="2xl">
+            Markdown Cheat Sheet
+          </Heading>
+          <TableContainer border="1px solid gray" borderRadius="10px" p="20px">
+            <Table variant="striped" colorScheme="gray" size="lg" fontSize="lg">
               <Thead>
                 <Tr>
                   <Th>Element</Th>
@@ -303,7 +310,7 @@ export default function Home() {
                 <Tr>
                   <Td>Heading</Td>
                   <Td>
-                    <ul style={{listStyle: 'none'}}>
+                    <ul style={{ listStyle: 'none' }}>
                       <li># H1</li>
                       <li>## H2</li>
                       <li>### H3</li>
@@ -325,7 +332,7 @@ export default function Home() {
                 <Tr>
                   <Td>Ordered List</Td>
                   <Td>
-                    <ul style={{listStyle: 'none'}}>
+                    <ul style={{ listStyle: 'none' }}>
                       <li>1. First Item</li>
                       <li>2. Second Item</li>
                       <li>3. Third Item</li>
@@ -335,7 +342,7 @@ export default function Home() {
                 <Tr>
                   <Td>Unordered list</Td>
                   <Td>
-                    <ul style={{listStyle: 'none'}}>
+                    <ul style={{ listStyle: 'none' }}>
                       <li>* Firt Item</li>
                       <li>* Second Item</li>
                       <li>* Third Item</li>
@@ -349,7 +356,7 @@ export default function Home() {
                 <Tr>
                   <Td>Code Block</Td>
                   <Td>
-                    <ul style={{listStyle: 'none'}}>
+                    <ul style={{ listStyle: 'none' }}>
                       <li>```language</li>
                       <li>Your code here</li>
                       <li>```</li>
@@ -367,7 +374,7 @@ export default function Home() {
                 <Tr>
                   <Td>Task List</Td>
                   <Td>
-                    <ul style={{listStyle: 'none'}}>
+                    <ul style={{ listStyle: 'none' }}>
                       <li>- [x] First Task</li>
                       <li>- [ ] Second Task</li>
                     </ul>
@@ -376,7 +383,7 @@ export default function Home() {
                 <Tr>
                   <Td>Table</Td>
                   <Td>
-                    <ul style={{listStyle: 'none'}}>
+                    <ul style={{ listStyle: 'none' }}>
                       <li>| Syntax | Description |</li>
                       <li>| ------ | ----------- |</li>
                       <li>| Header | Title |</li>
@@ -405,9 +412,7 @@ export default function Home() {
         <Heading as="h2" maxW="700px" color={COLORS.white} textAlign="center">
           How to create a Markdown Editor with React and Codemirror
         </Heading>
-        <Iframe
-          src="https://www.youtube.com/embed/gF7wpKaeDE0"
-        ></Iframe>
+        <Iframe src="https://www.youtube.com/embed/gF7wpKaeDE0"></Iframe>
       </Box>
       <Box
         as="footer"

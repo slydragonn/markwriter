@@ -10,11 +10,11 @@ type RunModeCallback = (
   to: number
 ) => void
 
-function runmode( 
-  textContent: string, 
-  language: Language, 
+function runmode(
+  textContent: string,
+  language: Language,
   callback: RunModeCallback
-):void {
+): void {
   const tree = language.parser.parse(textContent)
   let pos = 0
 
@@ -44,7 +44,6 @@ export function findLanguage(langName: string): LanguageDescription | null {
   } else {
     return null
   }
-
 }
 
 export async function getLanguage(langName: string): Promise<Language | null> {

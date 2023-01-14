@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import runmode, { getLanguage } from 'utils/runmode'
 
 type Tokens = {
-  text: string,
+  text: string
   style: string | null
 }[]
 
@@ -28,7 +28,7 @@ const RemarkCode: React.FC<
         setSpans(tokens)
       }
     })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.children])
 
   if (spans.length > 0) {
@@ -42,7 +42,6 @@ const RemarkCode: React.FC<
       </code>
     )
   } else {
-
     return <code>{props.children}</code>
   }
 }

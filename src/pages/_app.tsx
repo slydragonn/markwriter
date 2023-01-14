@@ -4,7 +4,7 @@ import Chakra from 'components/Chakra'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Chakra cookies={pageProps.cookies} >
+    <Chakra cookies={pageProps.cookies}>
       <Component {...pageProps} />
     </Chakra>
   )

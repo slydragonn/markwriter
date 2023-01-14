@@ -1,14 +1,17 @@
-import { ChakraProvider, cookieStorageManagerSSR, localStorageManager } from "@chakra-ui/react"
-import { ReactNode } from "react"
+import {
+  ChakraProvider,
+  cookieStorageManagerSSR,
+  localStorageManager
+} from '@chakra-ui/react'
+import { ReactNode } from 'react'
 import theme from '../lib/theme'
-
 
 interface ChakraProps {
   children: ReactNode
   cookies: string
 }
 
-const Chakra = ({children, cookies}: ChakraProps) => {
+const Chakra = ({ children, cookies }: ChakraProps) => {
   const colorModeManager =
     typeof cookies === 'string'
       ? cookieStorageManagerSSR(cookies)
@@ -21,7 +24,7 @@ const Chakra = ({children, cookies}: ChakraProps) => {
   )
 }
 
-export async function getServerSideProps({ req }:any) {
+export async function getServerSideProps({ req }: any) {
   return {
     props: {
       cookies: req.headers.cookie ?? ''
