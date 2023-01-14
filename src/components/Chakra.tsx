@@ -9,7 +9,6 @@ interface ChakraProps {
 }
 
 const Chakra = ({children, cookies}: ChakraProps) => {
-  console.log(cookies)
   const colorModeManager =
     typeof cookies === 'string'
       ? cookieStorageManagerSSR(cookies)

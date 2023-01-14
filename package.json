@@ -31,17 +31,19 @@
     "framer-motion": "^8.4.2",
     "github-markdown-css": "^5.1.0",
     "hast-util-sanitize": "^4.1.0",
+    "marked": "^4.2.5",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
-    "remark-gfm": "^3.0.1",
-    "remark-parse": "^10.0.1",
-    "remark-react": "^9.0.1",
+    "rehype-parse": "^8.0.4",
+    "rehype-react": "^7.1.1",
+    "rehype-sanitize": "^5.0.1",
     "typescript": "4.9.4",
     "unified": "^10.1.2"
   },
   "devDependencies": {
+    "@types/marked": "^4.0.8",
     "eslint-config-prettier": "^8.6.0",
     "prettier": "2.8.2"
   }
