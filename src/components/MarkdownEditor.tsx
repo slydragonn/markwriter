@@ -4,11 +4,11 @@ import { useEffect, useContext } from 'react'
 import EditorStateContext from 'context/EditorState'
 
 interface MarkdownEditorProps {
-  handleChange: (state: string) => void
+  handleEditorValueChange: (state: string) => void
 }
-const MarkdownEditor = ({ handleChange }: MarkdownEditorProps) => {
+const MarkdownEditor = ({ handleEditorValueChange }: MarkdownEditorProps) => {
   const [ref, editorView] = useCodemirror<HTMLDivElement>({
-    handleChange
+    handleEditorValueChange
   })
 
   const context = useContext(EditorStateContext)

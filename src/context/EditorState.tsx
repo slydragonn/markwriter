@@ -1,8 +1,8 @@
-import { EditorView } from '@codemirror/view'
-import { useState, createContext, useCallback, ReactNode } from 'react'
+import { EditorView } from "@codemirror/view"
+import { useState, createContext, useCallback, ReactNode } from "react"
 
 export type ESContext = {
-  editorState: EditorView | null
+  editorState: EditorView | null,
   handleState: (state: EditorView) => void
 }
 
@@ -12,7 +12,7 @@ interface EditorStateProviderProps {
   children: ReactNode
 }
 
-export const EditorStateProvider = ({ children }: EditorStateProviderProps) => {
+export const EditorStateProvider = ({children}: EditorStateProviderProps) => {
   const [editorState, setEditorState] = useState<EditorView | null>(null)
 
   const handleState = useCallback(
@@ -21,7 +21,7 @@ export const EditorStateProvider = ({ children }: EditorStateProviderProps) => {
   )
 
   return (
-    <EditorStateContext.Provider value={{ editorState, handleState }}>
+    <EditorStateContext.Provider value={{editorState, handleState}} >
       {children}
     </EditorStateContext.Provider>
   )

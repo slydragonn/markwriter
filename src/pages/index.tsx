@@ -61,13 +61,14 @@ const Card = ({ title, content, image }: CardProps) => {
       <Image
         src={image}
         alt="Markdown Editor"
-        width={600}
-        height={600}
+        width={800}
+        height={800}
         style={{
           width: '300px',
           height: '170px',
-          objectFit: 'cover',
-          borderRadius: '10px'
+          objectFit: 'fill',
+          borderRadius: '10px',
+          imageOrientation: ''
         }}
       />
       <Heading as="h3" fontSize="lg">
@@ -99,13 +100,14 @@ const Section = ({ title, content, image, direction }: SectionProps) => {
       <Image
         src={image}
         alt="Markdown Editor"
-        width={600}
-        height={600}
+        width={800}
+        height={800}
         style={{
           width: '300px',
           height: '170px',
           objectFit: 'cover',
-          borderRadius: '10px'
+          borderRadius: '10px',
+          filter: 'saturate(200%)'
         }}
       />
     </Flex>
@@ -122,7 +124,7 @@ export default function Home() {
           content="MarkWriter | A simple and straightforward Markdown Web Editor"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/markico.jpg" />
       </Head>
       <Box
         pos="relative"
@@ -170,7 +172,8 @@ export default function Home() {
               objectFit: 'cover',
               width: '1000px',
               borderRadius: '10px',
-              opacity: 0.85
+              opacity: 0.9,
+              filter: 'saturate(180%)'
             }}
           />
         </Box>
@@ -195,17 +198,16 @@ export default function Home() {
         <Heading as="h2" maxW="700px" color={COLORS.white} textAlign="center">
           Write all your Notes or Documentation in Markdown
         </Heading>
-        <Image
-          src="/editor.png"
-          alt="MarkWriter Editor"
-          width={1000}
-          height={1000}
+        <video
+          src="/mde.mp4"
+          autoPlay
+          muted
+          loop
           style={{
             width: '600px',
-            objectFit: 'cover',
             borderRadius: '10px'
           }}
-        />
+        ></video>
         <Text
           textAlign="center"
           maxW="700px"
@@ -229,19 +231,19 @@ export default function Home() {
         px="20px"
       >
         <Card
-          title="Export as Markdown and HTML"
-          content="Do you want to save everything you write in a file or in another format? You just have to press a button."
-          image="/editor.png"
+          title="Copy Markdown code and HTML"
+          content="Easily copy it and use what you wrote in different parts."
+          image="/copy.png"
         />
         <Card
           title="WYSIWYG controls"
           content="Type faster and more comfortably with WYSIWYG controls"
-          image="/editor.png"
+          image="/controls.png"
         />
         <Card
           title="Use it on a desktop or mobile"
           content="Easy to use on any platform. No extra steps, just type."
-          image="/editor.png"
+          image="/layout.png"
         />
       </Box>
       <Box
@@ -263,19 +265,19 @@ export default function Home() {
           <Section
             title="Heading"
             content="Headings allow you to divide notes for better understanding."
-            image="/editor.png"
+            image="/heading.png"
             direction="right"
           />
           <Section
             title="Code Block"
             content="Perfect for code snippets and already with syntax styles."
-            image="/editor.png"
+            image="/code.png"
             direction="left"
           />
           <Section
             title="List"
             content="You can use the ordered or unordered lists to better understand your notes."
-            image="/editor.png"
+            image="/list.png"
             direction="right"
           />
         </Stack>
@@ -409,10 +411,12 @@ export default function Home() {
         p="80px 20px"
         backgroundColor={COLORS.black}
       >
+       {/* 
         <Heading as="h2" maxW="700px" color={COLORS.white} textAlign="center">
-          How to create a Markdown Editor with React and Codemirror
+          How to create a Markdown Editor with React, Vite and Codemirror
         </Heading>
         <Iframe src="https://www.youtube.com/embed/gF7wpKaeDE0"></Iframe>
+       */}
       </Box>
       <Box
         as="footer"

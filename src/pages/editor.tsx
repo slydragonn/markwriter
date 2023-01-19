@@ -1,26 +1,42 @@
 import MarkdownEditor from 'components/MarkdownEditor'
-import DesktopLayout from 'components/layouts/Desktop'
+import ResponsiveEditorLayout from 'components/layouts/ResponsiveEditor'
 import { Box } from '@chakra-ui/react'
 import { EditorStateProvider } from 'context/EditorState'
 import Navbar from 'components/Navbar'
 import HTMLPreview from 'components/HtmlPreview'
 import { useState } from 'react'
+import Head from 'next/head'
+import {EditorLayoutProvider} from 'context/EditorLayout'
+import { EditorCodeValueProvider } from 'context/EditorCodeValue'
 
 const EditorPage = () => {
-  const [code, setCode] = useState('')
+  const [editorCodeValue, setEditorCodeValue] = useState('')
+
   return (
+    <>
+    <Head>
+      <title>MarkWriter | Editor</title>
+      <link rel="icon" href="/markico.jpg" />
+    </Head>
     <EditorStateProvider>
-      <Navbar />
-      <Box as="main">
-        <Box w="100%" h="calc(100vh - 45px)">
-          <DesktopLayout
-            markdownEditor={<MarkdownEditor handleChange={setCode} />}
-            htmlPreview={<HTMLPreview code={code} />}
-          />
-        </Box>
-      </Box>
+      <EditorCodeValueProvider>
+        <EditorLayoutProvider>
+          <Navbar />
+          <Box as="main">
+            <Box w="100%" h="calc(100vh - 45px)">
+              <ResponsiveEditorLayout
+                markdownEditor={<MarkdownEditor handleEditorValueChange={setEditorCodeValue} />}
+                htmlPreview={<HTMLPreview code={editorCodeValue} />}
+              />
+            </Box>
+          </Box>
+        </EditorLayoutProvider>
+      </EditorCodeValueProvider>
     </EditorStateProvider>
+    </>
   )
 }
 
 export default EditorPage
+
+export { getServerSideProps } from '../components/Chakra'

@@ -4,7 +4,7 @@ import { EditorState } from '@codemirror/state'
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import { languages } from '@codemirror/language-data'
 import { history, defaultKeymap, historyKeymap } from '@codemirror/commands'
-import { oneDark } from '@codemirror/theme-one-dark'
+import { oneDark as oneDarkTheme } from '@codemirror/theme-one-dark'
 import { syntaxHighlighting, defaultHighlightStyle } from '@codemirror/language'
 
 export const myTheme = EditorView.theme({
@@ -21,12 +21,12 @@ const syntaxStyles = syntaxHighlighting(defaultHighlightStyle, {
 
 interface useCodemirrorProps {
   initialDoc?: string
-  handleChange: (state: string) => void
+  handleEditorValueChange: (state: string) => void
 }
 
 const useCodemirror = <T extends Element>({
   initialDoc,
-  handleChange
+  handleEditorValueChange
 }: useCodemirrorProps): [React.MutableRefObject<T | null>, EditorView?] => {
   const element = useRef<T>(null)
   const [editorView, setEditorView] = useState<EditorView>()
@@ -34,7 +34,7 @@ const useCodemirror = <T extends Element>({
   const onUpdate = () =>
     EditorView.updateListener.of(update => {
       if (update.changes) {
-        handleChange && handleChange(update.state.doc.toString())
+        handleEditorValueChange && handleEditorValueChange(update.state.doc.toString())
       }
     })
 
@@ -50,7 +50,7 @@ const useCodemirror = <T extends Element>({
       history(),
       keymap.of([...defaultKeymap, ...historyKeymap]),
       EditorView.lineWrapping,
-      oneDark,
+      oneDarkTheme,
       syntaxStyles,
       onUpdate(),
       myTheme

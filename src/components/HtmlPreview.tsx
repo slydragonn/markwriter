@@ -2,12 +2,13 @@ import { Box } from '@chakra-ui/react'
 import { unified } from 'unified'
 import { defaultSchema } from 'hast-util-sanitize'
 import 'github-markdown-css/github-markdown.css'
-import { createElement } from 'react'
+import { createElement, useContext, useEffect } from 'react'
 import RemarkCode from 'components/RemarkCodeBlocks'
 import rehypeReact from 'rehype-react'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeParse from 'rehype-parse'
 import { marked } from 'marked'
+import EditorCodeValueContext from 'context/EditorCodeValue'
 
 const schema = {
   ...defaultSchema,
@@ -22,8 +23,10 @@ interface HTMLPreviewProps {
 }
 
 const HTMLPreview = ({ code }: HTMLPreviewProps) => {
-  const html = marked.parse(code)
-  const md = unified()
+  const {html, md} = useContext(EditorCodeValueContext)
+
+  const markdownToHtml = marked.parse(code)
+  const richHtml = unified()
     .use(rehypeParse, { fragment: true })
     .use(rehypeSanitize, { ...schema })
     .use(rehypeReact, {
@@ -32,7 +35,13 @@ const HTMLPreview = ({ code }: HTMLPreviewProps) => {
         code: RemarkCode
       }
     })
-    .processSync(html).result
+    .processSync(markdownToHtml).result
+
+    useEffect(() => {
+      md.setCode(code)
+      html.setCode(markdownToHtml)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [code])
 
   return (
     <Box
@@ -41,10 +50,9 @@ const HTMLPreview = ({ code }: HTMLPreviewProps) => {
       h="100%"
       backgroundColor="#282c34"
       p="10px"
-      borderLeft="1px solid rgb(255, 255, 255, 0.3)"
       overflowY="auto"
     >
-      {md}
+      {richHtml}
     </Box>
   )
 }
