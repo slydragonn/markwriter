@@ -175,6 +175,7 @@ export default function Home() {
               opacity: 0.9,
               filter: 'saturate(180%)'
             }}
+            priority={true}
           />
         </Box>
         <Box
@@ -411,12 +412,10 @@ export default function Home() {
         p="80px 20px"
         backgroundColor={COLORS.black}
       >
-       {/* 
         <Heading as="h2" maxW="700px" color={COLORS.white} textAlign="center">
-          How to create a Markdown Editor with React, Vite and Codemirror
+          How to create a Markdown Editor with React, Vite, and Codemirror
         </Heading>
-        <Iframe src="https://www.youtube.com/embed/gF7wpKaeDE0"></Iframe>
-       */}
+        <Iframe src="https://www.youtube.com/embed/iqH62Q7otJw"></Iframe>
       </Box>
       <Box
         as="footer"
