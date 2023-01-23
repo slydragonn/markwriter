@@ -7,7 +7,17 @@ interface MarkdownEditorProps {
   handleEditorValueChange: (state: string) => void
 }
 const MarkdownEditor = ({ handleEditorValueChange }: MarkdownEditorProps) => {
+  const getLastCodeValue = () => {
+    if (typeof window !== 'undefined') {
+      const codeValue = localStorage.getItem('markwriter-code')
+
+      return codeValue ? codeValue : null
+    }
+    return null
+  }
+
   const [ref, editorView] = useCodemirror<HTMLDivElement>({
+    initialDoc: getLastCodeValue() ?? '',
     handleEditorValueChange
   })
 

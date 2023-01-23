@@ -6,33 +6,42 @@ import Navbar from 'components/Navbar'
 import HTMLPreview from 'components/HtmlPreview'
 import { useState } from 'react'
 import Head from 'next/head'
-import {EditorLayoutProvider} from 'context/EditorLayout'
+import { EditorLayoutProvider } from 'context/EditorLayout'
 import { EditorCodeValueProvider } from 'context/EditorCodeValue'
 
 const EditorPage = () => {
   const [editorCodeValue, setEditorCodeValue] = useState('')
 
+  const handleEditorValueChange = (value: string) => {
+    localStorage.setItem('markwriter-code', value)
+    setEditorCodeValue(value)
+  }
+
   return (
     <>
-    <Head>
-      <title>MarkWriter | Editor</title>
-      <link rel="icon" href="/markico.jpg" />
-    </Head>
-    <EditorStateProvider>
-      <EditorCodeValueProvider>
-        <EditorLayoutProvider>
-          <Navbar />
-          <Box as="main">
-            <Box w="100%" h="calc(100vh - 45px)">
-              <ResponsiveEditorLayout
-                markdownEditor={<MarkdownEditor handleEditorValueChange={setEditorCodeValue} />}
-                htmlPreview={<HTMLPreview code={editorCodeValue} />}
-              />
+      <Head>
+        <title>MarkWriter | Editor</title>
+        <link rel="icon" href="/markico.jpg" />
+      </Head>
+      <EditorStateProvider>
+        <EditorCodeValueProvider>
+          <EditorLayoutProvider>
+            <Navbar />
+            <Box as="main">
+              <Box w="100%" h="calc(100vh - 45px)">
+                <ResponsiveEditorLayout
+                  markdownEditor={
+                    <MarkdownEditor
+                      handleEditorValueChange={handleEditorValueChange}
+                    />
+                  }
+                  htmlPreview={<HTMLPreview code={editorCodeValue} />}
+                />
+              </Box>
             </Box>
-          </Box>
-        </EditorLayoutProvider>
-      </EditorCodeValueProvider>
-    </EditorStateProvider>
+          </EditorLayoutProvider>
+        </EditorCodeValueProvider>
+      </EditorStateProvider>
     </>
   )
 }

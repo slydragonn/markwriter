@@ -3,7 +3,7 @@ import {
   cookieStorageManagerSSR,
   localStorageManager
 } from '@chakra-ui/react'
-import { ReactNode } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
 import theme from '../lib/theme'
 
 interface ChakraProps {
@@ -12,8 +12,14 @@ interface ChakraProps {
 }
 
 const Chakra = ({ children, cookies }: ChakraProps) => {
+  const [coookiesType, setCookiesType] = useState<typeof cookies>()
+
+  useEffect(() => {
+    setCookiesType(typeof cookies)
+  }, [cookies])
+
   const colorModeManager =
-    typeof cookies === 'string'
+    coookiesType === 'string'
       ? cookieStorageManagerSSR(cookies)
       : localStorageManager
 
