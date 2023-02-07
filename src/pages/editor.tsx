@@ -1,13 +1,13 @@
-import MarkdownEditor from 'components/MarkdownEditor'
-import ResponsiveEditorLayout from 'components/layouts/ResponsiveEditor'
+import { MarkdownEditor, HtmlPreview, Navbar } from 'components/'
 import { Box } from '@chakra-ui/react'
-import { EditorStateProvider } from 'context/EditorState'
-import Navbar from 'components/Navbar'
-import HTMLPreview from 'components/HtmlPreview'
 import { useState } from 'react'
 import Head from 'next/head'
-import { EditorLayoutProvider } from 'context/EditorLayout'
-import { EditorCodeValueProvider } from 'context/EditorCodeValue'
+import { ResponsiveEditorLayout } from 'components/layouts'
+import {
+  EditorStateProvider,
+  EditorCodeValueProvider,
+  EditorLayoutProvider
+} from 'context/'
 
 const EditorPage = () => {
   const [editorCodeValue, setEditorCodeValue] = useState('')
@@ -35,7 +35,7 @@ const EditorPage = () => {
                       handleEditorValueChange={handleEditorValueChange}
                     />
                   }
-                  htmlPreview={<HTMLPreview code={editorCodeValue} />}
+                  htmlPreview={<HtmlPreview code={editorCodeValue} />}
                 />
               </Box>
             </Box>
@@ -48,4 +48,4 @@ const EditorPage = () => {
 
 export default EditorPage
 
-export { getServerSideProps } from '../components/Chakra'
+export { getServerSideProps } from 'components/Chakra'

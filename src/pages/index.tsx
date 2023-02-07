@@ -460,4 +460,4 @@ export default function Home() {
   )
 }
 
-export { getServerSideProps } from '../components/Chakra'
+export { getServerSideProps } from 'components/Chakra'

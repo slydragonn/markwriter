@@ -3,12 +3,12 @@ import { unified } from 'unified'
 import { defaultSchema } from 'hast-util-sanitize'
 import 'github-markdown-css/github-markdown.css'
 import { createElement, useContext, useEffect } from 'react'
-import RemarkCode from 'components/RemarkCodeBlocks'
+import { RemarkCode } from 'components/'
 import rehypeReact from 'rehype-react'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeParse from 'rehype-parse'
 import { marked } from 'marked'
-import EditorCodeValueContext from 'context/EditorCodeValue'
+import { EditorCodeValueContext } from 'context/'
 
 const schema = {
   ...defaultSchema,
@@ -23,7 +23,7 @@ interface HTMLPreviewProps {
 }
 
 const HTMLPreview = ({ code }: HTMLPreviewProps) => {
-  const {html, md} = useContext(EditorCodeValueContext)
+  const { html, md } = useContext(EditorCodeValueContext)
 
   const markdownToHtml = marked.parse(code)
   const richHtml = unified()
@@ -37,11 +37,11 @@ const HTMLPreview = ({ code }: HTMLPreviewProps) => {
     })
     .processSync(markdownToHtml).result
 
-    useEffect(() => {
-      md.setCode(code)
-      html.setCode(markdownToHtml)
+  useEffect(() => {
+    md.setCode(code)
+    html.setCode(markdownToHtml)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [code])
+  }, [code])
 
   return (
     <Box

@@ -5,14 +5,11 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  IconButton,
-  MenuDivider
+  IconButton
 } from '@chakra-ui/react'
 import { useContext, useState, ReactNode } from 'react'
 import { BsCaretDownFill, BsArrowLeftShort } from 'react-icons/bs'
-import EditorStateContext from 'context/EditorState'
 import { Transaction } from '@codemirror/state'
-import markdownSyntaxList from 'components/MarkdownSyntaxList'
 import Link from 'next/link'
 import {
   AiOutlineClear as ClearIcon,
@@ -20,10 +17,13 @@ import {
   AiFillLayout as LayoutICon,
   AiFillEdit as EditICon
 } from 'react-icons/ai'
-import EditorLayoutContext from 'context/EditorLayout'
-import EditorCodeValueContext from 'context/EditorCodeValue'
-import EditorAlert from 'components/Alert'
 import useAlert from 'hooks/useAlert'
+import { EditorAlert, markdownSyntaxList } from 'components/'
+import {
+  EditorLayoutContext,
+  EditorCodeValueContext,
+  EditorStateContext
+} from 'context/'
 
 type MenuItemObject = {
   value: string
@@ -60,28 +60,6 @@ const CustomMenu = ({ name, icon, menuItems }: CustomMenuProps) => {
   )
 }
 
-const FileOptionsMenu = () => {
-  return (
-    <Menu>
-      <MenuButton
-        as={Button}
-        rightIcon={<BsCaretDownFill />}
-        size="sm"
-        colorScheme="gray"
-        variant="outline"
-      >
-        File
-      </MenuButton>
-      <MenuList>
-        <MenuItem>Copy Markdown</MenuItem>
-        <MenuItem>Copy HTML</MenuItem>
-        <MenuDivider />
-        <MenuItem>Export as Markdown</MenuItem>
-        <MenuItem>Export as HTML</MenuItem>
-      </MenuList>
-    </Menu>
-  )
-}
 interface ControlsProps {
   setMarkdown: (code: string) => void
 }
@@ -112,11 +90,11 @@ const WYSIWYGControls = ({ setMarkdown }: ControlsProps) => {
   )
 }
 
-interface DesktopNavbarProps {
+interface DeviceNavbarProps {
   children: ReactNode
 }
 
-const DesktopNavbar = ({ children }: DesktopNavbarProps) => {
+const DesktopNavbar = ({ children }: DeviceNavbarProps) => {
   return (
     <Box
       display={{ base: 'none', lg: 'flex' }}
@@ -130,7 +108,7 @@ const DesktopNavbar = ({ children }: DesktopNavbarProps) => {
   )
 }
 
-const MobileNavbar = ({ children }: DesktopNavbarProps) => {
+const MobileNavbar = ({ children }: DeviceNavbarProps) => {
   return (
     <Box
       display={{ base: 'flex', lg: 'none' }}

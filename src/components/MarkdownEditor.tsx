@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import useCodemirror from 'hooks/useCodemirror'
 import { useEffect, useContext } from 'react'
-import EditorStateContext from 'context/EditorState'
+import { EditorStateContext } from 'context/'
 
 interface MarkdownEditorProps {
   handleEditorValueChange: (state: string) => void
