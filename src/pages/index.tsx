@@ -404,19 +404,6 @@ export default function Home() {
         </Flex>
       </Box>
       <Box
-        display="flex"
-        flexDir="column"
-        alignItems="center"
-        gap="40px"
-        w="100%"
-        p="80px 20px"
-        backgroundColor={COLORS.black}
-      >
-        <Heading as="h2" maxW="700px" color={COLORS.white} textAlign="center">
-          How to create a Markdown Editor with React, Vite, and Codemirror
-        </Heading>
-      </Box>
-      <Box
         as="footer"
         display="flex"
         flexDir="column"
