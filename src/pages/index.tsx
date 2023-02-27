@@ -415,7 +415,6 @@ export default function Home() {
         <Heading as="h2" maxW="700px" color={COLORS.white} textAlign="center">
           How to create a Markdown Editor with React, Vite, and Codemirror
         </Heading>
-        <Iframe src="https://www.youtube.com/embed/iqH62Q7otJw"></Iframe>
       </Box>
       <Box
         as="footer"
