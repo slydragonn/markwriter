@@ -165,7 +165,7 @@ export default function Home() {
         <Box pos={{ base: 'static', md: 'absolute' }} bottom="-100px" px="20px">
           <Image
             alt="MarkWriter Editor"
-            src="/editor.png"
+            src="/editor.jpg"
             width={1500}
             height={1500}
             style={{
@@ -234,17 +234,17 @@ export default function Home() {
         <Card
           title="Copy Markdown code and HTML"
           content="Easily copy it and use what you wrote in different parts."
-          image="/copy.png"
+          image="/copy.jpg"
         />
         <Card
           title="WYSIWYG controls"
           content="Type faster and more comfortably with WYSIWYG controls"
-          image="/controls.png"
+          image="/controls.jpg"
         />
         <Card
           title="Use it on a desktop or mobile"
           content="Easy to use on any platform. No extra steps, just type."
-          image="/layout.png"
+          image="/layout.jpg"
         />
       </Box>
       <Box
@@ -266,19 +266,19 @@ export default function Home() {
           <Section
             title="Heading"
             content="Headings allow you to divide notes for better understanding."
-            image="/heading.png"
+            image="/heading.jpg"
             direction="right"
           />
           <Section
             title="Code Block"
             content="Perfect for code snippets and already with syntax styles."
-            image="/code.png"
+            image="/code.jpg"
             direction="left"
           />
           <Section
             title="List"
             content="You can use the ordered or unordered lists to better understand your notes."
-            image="/list.png"
+            image="/list.jpg"
             direction="right"
           />
         </Stack>
