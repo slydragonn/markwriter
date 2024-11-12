@@ -48,7 +48,7 @@ const HTMLPreview = ({ code }: HTMLPreviewProps) => {
       className="markdown-body"
       w="100%"
       h="100%"
-      backgroundColor="#282c34"
+      backgroundColor="#111111"
       p="10px"
       overflowY="auto"
     >

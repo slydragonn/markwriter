@@ -1,20 +1,5 @@
 import Head from 'next/head'
-import {
-  Button,
-  Heading,
-  Text,
-  Box,
-  Flex,
-  Stack,
-  HStack,
-  TableContainer,
-  Table,
-  Thead,
-  Th,
-  Tbody,
-  Td,
-  Tr
-} from '@chakra-ui/react'
+import { Button, Heading, Text, Box, Flex, HStack } from '@chakra-ui/react'
 import {
   AiOutlineRight as RightIcon,
   AiFillGithub as GithubIcon,
@@ -22,59 +7,52 @@ import {
 } from 'react-icons/ai'
 import Image from 'next/image'
 import Link from 'next/link'
-import styled from '@emotion/styled'
 
 const COLORS = {
   black: '#111111',
-  blue: '#086099',
-  purple: '#d000cc',
+  black_purple: '#563A9C',
+  purple: '#8B5DFF',
   white: '#ffffff'
 }
 
-const Iframe = styled.iframe`
-  width: 600px;
-  height: 350px;
-  border-radius: 10px;
-
-  @media screen and (max-width: 650px) {
-    width: 300px;
-    height: 170px;
-  }
-`
-
-interface CardProps {
-  title: string
-  content: string
-  image: string
-}
-
-const Card = ({ title, content, image }: CardProps) => {
+const Navbar = () => {
   return (
     <Flex
-      flexDir="column"
-      w="300px"
-      gap="10px"
-      color={COLORS.white}
+      zIndex="100"
+      pos="fixed"
+      top="0"
+      right="0"
+      left="0"
+      m="20px auto"
+      flexDir="row"
+      alignItems="center"
+      justifyContent="space-around"
+      w={{ base: '90%', sm: '500px' }}
+      gap="80px"
       textAlign="center"
-      justifyContent="center"
+      bg="rgb(0, 0, 0, .5)"
+      padding="10px 20px"
+      borderRadius="20px"
+      backdropFilter="blur(10px) saturate(200%)"
+      border="1px solid rgb(255, 255, 255, 0.1)"
     >
-      <Image
-        src={image}
-        alt="Markdown Editor"
-        width={800}
-        height={800}
-        style={{
-          width: '300px',
-          height: '170px',
-          objectFit: 'fill',
-          borderRadius: '10px',
-          imageOrientation: ''
-        }}
-      />
-      <Heading as="h3" fontSize="lg">
-        {title}
-      </Heading>
-      <Text>{content}</Text>
+      <Text color={COLORS.white} fontWeight="thin" opacity={0.7} fontSize="sm">
+        MARKWRITER
+      </Text>
+      <Link href="/editor">
+        <Button
+          rightIcon={<RightIcon />}
+          size="sm"
+          bg={COLORS.purple}
+          color={COLORS.white}
+          _hover={{
+            background: COLORS.black_purple
+          }}
+          borderRadius="999px"
+        >
+          Editor
+        </Button>
+      </Link>
     </Flex>
   )
 }
@@ -90,12 +68,36 @@ const Section = ({ title, content, image, direction }: SectionProps) => {
   const flexRow = direction === 'right' ? 'row' : 'row-reverse'
 
   return (
-    <Flex flexDir={{ base: 'column', md: flexRow }} gap="80px">
-      <Box display="flex" flexDir="column" justifyContent="center" maxW="300px">
-        <Heading as="h3" fontSize="lg">
+    <Flex
+      flexDir={{ base: 'column-reverse', md: flexRow }}
+      justifyContent="center"
+      alignItems="center"
+      gap="40px"
+    >
+      <Box
+        display="flex"
+        flexDir="column"
+        justifyContent="center"
+        alignItems="center"
+        maxW={{ base: '90%', md: '320px' }}
+        height={{ base: 'auto', md: '280px' }}
+        bg={COLORS.purple}
+        p="20px 20px"
+        borderRadius="20px"
+        textAlign="center"
+        gap="10px"
+        boxShadow={`0 0 10px 0px ${COLORS.black_purple}`}
+      >
+        <Heading
+          as="h3"
+          size="lg"
+          color={COLORS.black_purple}
+          fontWeight="800"
+          textTransform="uppercase"
+        >
           {title}
         </Heading>
-        <Text>{content}</Text>
+        <Text fontSize="xl">{content}</Text>
       </Box>
       <Image
         src={image}
@@ -103,11 +105,13 @@ const Section = ({ title, content, image, direction }: SectionProps) => {
         width={800}
         height={800}
         style={{
-          width: '300px',
-          height: '170px',
+          width: '450px',
+          height: '280px',
           objectFit: 'cover',
           borderRadius: '10px',
-          filter: 'saturate(200%)'
+          opacity: '0.7',
+          boxShadow: '0 0 20px 10px rgb(190, 190, 190, 0.1)',
+          border: '1px solid rgb(255, 255, 255, 0.1)'
         }}
       />
     </Flex>
@@ -126,17 +130,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/markico.jpg" />
       </Head>
+      <Navbar />
       <Box
         pos="relative"
         overflow="hidden"
         display="flex"
         flexDir="column"
         alignItems="center"
-        justifyContent={{ base: 'space-around', md: 'space-between' }}
+        justifyContent="center"
+        gap="80px"
         w="100%"
-        minH="100vh"
-        p="0 20px"
-        bg={`linear-gradient(180deg, ${COLORS.black} 20%, ${COLORS.blue} 60%, ${COLORS.purple} 100%)`}
+        p="150px 20px"
+        bg={COLORS.black}
       >
         <Flex
           flexDir="column"
@@ -145,263 +150,86 @@ export default function Home() {
           gap="80px"
           textAlign="center"
         >
-          <Text color={COLORS.white} mt="10px" fontWeight="thin" opacity={0.7}>
-            MARKWRITER
-          </Text>
-          <div>
-            <Heading as="h1" size="3xl" color={COLORS.white}>
+          <Flex flexDir="column" justifyContent="center" alignItems="center">
+            <Heading
+              as="h1"
+              size="3xl"
+              fontWeight="black"
+              bgImg="linear-gradient(45deg, #f3ec78, #af4261)"
+              bgSize="100%"
+              bgRepeat="repeat"
+              bgClip="text"
+              fill="transparent"
+            >
               Simple Markdown Editor
             </Heading>
-            <Text color={COLORS.white} fontWeight="thin" mt="10px">
-              MarkWriter is a Simple and Minimalist Markdown Editor
+            <Text
+              color={COLORS.white}
+              fontWeight="thin"
+              mt="10px"
+              opacity="0.7"
+              fontSize="md"
+              maxW="600px"
+            >
+              Easily write everything you want in Markdown thanks to MarkWriter.
+              All the features that make Markdown such a beloved format are
+              available here.
             </Text>
-          </div>
-          <Link href="/editor">
-            <Button rightIcon={<RightIcon />} size="lg">
-              Editor
-            </Button>
-          </Link>
+          </Flex>
         </Flex>
-        <Box pos={{ base: 'static', md: 'absolute' }} bottom="-100px" px="20px">
-          <Image
-            alt="MarkWriter Editor"
-            src="/editor.jpg"
-            width={1500}
-            height={1500}
+        <Box>
+          <video
+            src="/mde.mp4"
+            autoPlay
+            muted
+            loop
             style={{
-              objectFit: 'cover',
-              width: '1000px',
-              borderRadius: '10px',
-              opacity: 0.9,
-              filter: 'saturate(180%)'
+              width: '800px',
+              borderRadius: '20px',
+              boxShadow: '0 0 40px 20px rgb(190, 190, 190, 0.1)',
+              opacity: '0.7'
             }}
-            priority={true}
-          />
+          ></video>
         </Box>
-        <Box
-          zIndex={10}
-          pos="absolute"
-          bottom={0}
-          w="100%"
-          h="200px"
-          bg="linear-gradient(180deg, rgba(17,17,17,0) 0%, rgba(17,17,17,1) 100%)"
-        ></Box>
       </Box>
       <Box
         display="flex"
         flexDir="column"
-        alignItems="center"
-        gap="40px"
-        backgroundColor={COLORS.black}
-        py="80px"
-        px="20px"
-      >
-        <Heading as="h2" maxW="700px" color={COLORS.white} textAlign="center">
-          Write all your Notes or Documentation in Markdown
-        </Heading>
-        <video
-          src="/mde.mp4"
-          autoPlay
-          muted
-          loop
-          style={{
-            width: '600px',
-            borderRadius: '10px'
-          }}
-        ></video>
-        <Text
-          textAlign="center"
-          maxW="700px"
-          color={COLORS.white}
-          fontSize="lg"
-        >
-          Easily write everything you want in Markdown thanks to MarkWriter. All
-          the features that make Markdown such a beloved format are available
-          here.
-        </Text>
-      </Box>
-      <Box
-        display="flex"
-        flexWrap="wrap"
         justifyContent="center"
-        alignItems="start"
-        gap="60px"
+        alignItems="center"
+        gap="150px"
         w="100%"
         p="80px 20px"
-        bg={`linear-gradient(0deg, ${COLORS.black} 0%, ${COLORS.blue} 40%, ${COLORS.purple} 100%)`}
-        px="20px"
+        bg={COLORS.black}
       >
-        <Card
+        <Heading
+          as="h2"
+          size="xl"
+          color={COLORS.white}
+          opacity="0.7"
+          textTransform="uppercase"
+          textAlign="center"
+        >
+          More about MarkWriter
+        </Heading>
+        <Section
           title="Copy Markdown code and HTML"
           content="Easily copy it and use what you wrote in different parts."
           image="/copy.jpg"
+          direction="left"
         />
-        <Card
+        <Section
           title="WYSIWYG controls"
           content="Type faster and more comfortably with WYSIWYG controls"
           image="/controls.jpg"
+          direction="right"
         />
-        <Card
+        <Section
           title="Use it on a desktop or mobile"
           content="Easy to use on any platform. No extra steps, just type."
           image="/layout.jpg"
+          direction="left"
         />
-      </Box>
-      <Box
-        display="flex"
-        flexDir="column"
-        alignItems="center"
-        gap="40px"
-        p="80px 20px"
-        backgroundColor={COLORS.black}
-        color={COLORS.white}
-        textAlign="center"
-      >
-        <Heading as="h2">How to write in Markdown</Heading>
-        <Text maxW="700px" fontSize="lg">
-          Markdown is a lightweight markup language that you can use to add
-          formatting elements to plaintext text documents.
-        </Text>
-        <Stack spacing="80px" mt="80px">
-          <Section
-            title="Heading"
-            content="Headings allow you to divide notes for better understanding."
-            image="/heading.jpg"
-            direction="right"
-          />
-          <Section
-            title="Code Block"
-            content="Perfect for code snippets and already with syntax styles."
-            image="/code.jpg"
-            direction="left"
-          />
-          <Section
-            title="List"
-            content="You can use the ordered or unordered lists to better understand your notes."
-            image="/list.jpg"
-            direction="right"
-          />
-        </Stack>
-        <Flex flexDir="column" alignItems="center" gap="20px" mt="80px">
-          <Text>Take notes right now with MarkWriter</Text>
-          <Link href="/editor">
-            <Button rightIcon={<RightIcon />} size="lg" colorScheme="gray">
-              Editor
-            </Button>
-          </Link>
-        </Flex>
-        <Flex
-          flexDir="column"
-          alignItems="center"
-          gap="40px"
-          w="100%"
-          mt="40px"
-          id="markdown-cheat-sheet"
-        >
-          <Heading as="h3" fontSize="2xl">
-            Markdown Cheat Sheet
-          </Heading>
-          <TableContainer border="1px solid gray" borderRadius="10px" p="20px">
-            <Table variant="striped" colorScheme="gray" size="lg" fontSize="lg">
-              <Thead>
-                <Tr>
-                  <Th>Element</Th>
-                  <Th>Syntax</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                <Tr>
-                  <Td>Heading</Td>
-                  <Td>
-                    <ul style={{ listStyle: 'none' }}>
-                      <li># H1</li>
-                      <li>## H2</li>
-                      <li>### H3</li>
-                    </ul>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Bold</Td>
-                  <Td>**bold text**</Td>
-                </Tr>
-                <Tr>
-                  <Td>Italic</Td>
-                  <Td>*italicized text*</Td>
-                </Tr>
-                <Tr>
-                  <Td>Blockquote</Td>
-                  <Td>&gt; blockquote</Td>
-                </Tr>
-                <Tr>
-                  <Td>Ordered List</Td>
-                  <Td>
-                    <ul style={{ listStyle: 'none' }}>
-                      <li>1. First Item</li>
-                      <li>2. Second Item</li>
-                      <li>3. Third Item</li>
-                    </ul>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Unordered list</Td>
-                  <Td>
-                    <ul style={{ listStyle: 'none' }}>
-                      <li>* Firt Item</li>
-                      <li>* Second Item</li>
-                      <li>* Third Item</li>
-                    </ul>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Code</Td>
-                  <Td>`Your code here`</Td>
-                </Tr>
-                <Tr>
-                  <Td>Code Block</Td>
-                  <Td>
-                    <ul style={{ listStyle: 'none' }}>
-                      <li>```language</li>
-                      <li>Your code here</li>
-                      <li>```</li>
-                    </ul>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Link</Td>
-                  <Td>[title](https://www.your-url.com)</Td>
-                </Tr>
-                <Tr>
-                  <Td>Image</Td>
-                  <Td>![alt text](url.jpg)</Td>
-                </Tr>
-                <Tr>
-                  <Td>Task List</Td>
-                  <Td>
-                    <ul style={{ listStyle: 'none' }}>
-                      <li>- [x] First Task</li>
-                      <li>- [ ] Second Task</li>
-                    </ul>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Table</Td>
-                  <Td>
-                    <ul style={{ listStyle: 'none' }}>
-                      <li>| Syntax | Description |</li>
-                      <li>| ------ | ----------- |</li>
-                      <li>| Header | Title |</li>
-                      <li>| Paragraph | Text |</li>
-                    </ul>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Strikethrough</Td>
-                  <Td>~~strikethrough~~</Td>
-                </Tr>
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </Flex>
       </Box>
       <Box
         as="footer"
@@ -413,9 +241,6 @@ export default function Home() {
         p="20px"
         backgroundColor={COLORS.black}
       >
-        <Text color={COLORS.white} fontWeight="thin" opacity={0.7}>
-          MARKWRITER
-        </Text>
         <HStack spacing="20px">
           <a
             href="https://github.com/slydragonn"

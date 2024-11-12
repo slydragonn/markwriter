@@ -30,7 +30,7 @@ const MarkdownEditor = ({ handleEditorValueChange }: MarkdownEditorProps) => {
   }, [editorView])
 
   return (
-    <Box ref={ref} w="100%" h="100%" fontSize="md" backgroundColor="#282c34" />
+    <Box ref={ref} w="100%" h="100%" fontSize="md" backgroundColor="#111111" />
   )
 }
 
